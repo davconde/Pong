@@ -71,7 +71,8 @@ namespace Pong {
         /// </summary>
         protected override void Initialize() {
             Random = new Random();
-            Resolution.Initialize(graphics);
+
+            Resolution.Initialize(graphics, 1280, 720);
 
             graphics.HardwareModeSwitch = false;
             graphics.IsFullScreen = false;
@@ -84,6 +85,9 @@ namespace Pong {
                 GraphicsDevice.PresentationParameters.BackBufferFormat,
                 DepthFormat.Depth24);
 
+            _aspectRatio = GraphicsDevice.Viewport.AspectRatio;
+            _oldWindowSize = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);
+
             base.Initialize();
         }
 
@@ -94,9 +98,6 @@ namespace Pong {
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _aspectRatio = GraphicsDevice.Viewport.AspectRatio;
-            _oldWindowSize = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);
 
             AudioEngine = new AudioEngine("Content/Sound/GameAudio.xgs");
             WaveBank = new WaveBank(AudioEngine, "Content/Sound/Wave Bank.xwb");
@@ -150,7 +151,7 @@ namespace Pong {
             _currentState.Draw(gameTime, spriteBatch);
 
             GraphicsDevice.SetRenderTarget(null);
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
             spriteBatch.End();
 

@@ -19,7 +19,11 @@ namespace Pong {
 #endif
 
 
-        static public void Initialize(GraphicsDeviceManager graphics) {
+        static public void Initialize(GraphicsDeviceManager graphics, int gameWidth, int gameHeight) {
+            graphics.PreferredBackBufferWidth = gameWidth;
+            graphics.PreferredBackBufferHeight = gameHeight;
+            graphics.ApplyChanges();
+
 #if WINDOWS
             ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
@@ -27,8 +31,9 @@ namespace Pong {
             PreviousWindowHeight = graphics.PreferredBackBufferHeight;
             WasResized = false;
 #endif
-            GameWidth = 800;
-            GameHeight = 480;
+
+            GameWidth = gameWidth;
+            GameHeight = gameHeight;
             CalculateMatrix(graphics);
         }
 

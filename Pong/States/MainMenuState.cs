@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace Pong.States {
     public class MainMenuState : State {
         private SpriteFont _font;
+        private Texture2D _titleTexture;
         private Texture2D _buttonTexture;
         private List<IUIComponent> _components;
 
@@ -20,6 +21,7 @@ namespace Pong.States {
             game.IsMouseVisible = true;
 
             _font = content.Load<SpriteFont>("Fonts/ButtonTextFont");
+            _titleTexture = content.Load<Texture2D>("Sprites/Title");
             _buttonTexture = content.Load<Texture2D>("Sprites/Button");
 
             var onePlayerButton = new Button(_buttonTexture, _font) {
@@ -30,7 +32,7 @@ namespace Pong.States {
             onePlayerButton.Click += OnePlayerButton_Click;
 
             var twoPlayerButton = new Button(_buttonTexture, _font) {
-                Position = new Vector2(50, 300),
+                Position = new Vector2(50, 390),
                 Text = "Player vs Player",
             };
 
@@ -62,7 +64,9 @@ namespace Pong.States {
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            spriteBatch.Draw(_titleTexture, new Vector2(580, 150), Color.White);
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);

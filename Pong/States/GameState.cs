@@ -83,7 +83,7 @@ namespace Pong.States {
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
