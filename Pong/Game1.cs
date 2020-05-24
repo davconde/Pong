@@ -19,8 +19,10 @@ namespace Pong {
 
         private State _currentState;
         private State _nextState;
-        KeyboardState _prevKeys;
-        KeyboardState _currentKeys;
+        private KeyboardState _prevKeys;
+        private KeyboardState _currentKeys;
+        private Point _oldWindowSize;
+        private float _aspectRatio;
 
         public static Random Random;
         public static AudioEngine AudioEngine;
@@ -31,7 +33,30 @@ namespace Pong {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            this.Window.ClientSizeChanged += delegate { Resolution.WasResized = true; };
+            Window.ClientSizeChanged += delegate { Resolution.WasResized = true; };
+            Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
+            Window.AllowUserResizing = true;
+        }
+
+        void Window_ClientSizeChanged(object sender, EventArgs e) {
+            if (graphics.IsFullScreen)
+                return;
+
+            Window.ClientSizeChanged -= new EventHandler<EventArgs>(Window_ClientSizeChanged);
+
+            if (Window.ClientBounds.Width != _oldWindowSize.X) {
+                graphics.PreferredBackBufferWidth = Window.ClientBounds.Width;
+                graphics.PreferredBackBufferHeight = (int)(Window.ClientBounds.Width / _aspectRatio);
+            } else if (Window.ClientBounds.Height != _oldWindowSize.Y) {
+                graphics.PreferredBackBufferWidth = (int)(Window.ClientBounds.Height * _aspectRatio);
+                graphics.PreferredBackBufferHeight = Window.ClientBounds.Height;
+            }
+
+            graphics.ApplyChanges();
+
+            _oldWindowSize = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);
+
+            Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
         }
 
         public void ChangeState(State state) {
@@ -69,6 +94,9 @@ namespace Pong {
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _aspectRatio = GraphicsDevice.Viewport.AspectRatio;
+            _oldWindowSize = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);
 
             AudioEngine = new AudioEngine("Content/Sound/GameAudio.xgs");
             WaveBank = new WaveBank(AudioEngine, "Content/Sound/Wave Bank.xwb");
@@ -115,19 +143,16 @@ namespace Pong {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime) {
-            if (graphics.IsFullScreen)
-                GraphicsDevice.SetRenderTarget(renderTarget);
+            GraphicsDevice.SetRenderTarget(renderTarget);
 
             GraphicsDevice.Clear(Color.Black);
 
             _currentState.Draw(gameTime, spriteBatch);
 
-            if (graphics.IsFullScreen) {
-                GraphicsDevice.SetRenderTarget(null);
-                spriteBatch.Begin();
-                spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Resolution.ScreenWidth, Resolution.ScreenHeight), Color.White);
-                spriteBatch.End();
-            }
+            GraphicsDevice.SetRenderTarget(null);
+            spriteBatch.Begin();
+            spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

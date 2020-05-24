@@ -37,7 +37,7 @@ namespace Pong.Components {
         public void Update(GameTime gameTime) {
             _prevMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-            Console.WriteLine(_currentMouse.X);
+
             var mouseRectangle = new Rectangle((int)(_currentMouse.X / Resolution.Scale.X),
                                                (int)(_currentMouse.Y / Resolution.Scale.Y),
                                                1,
