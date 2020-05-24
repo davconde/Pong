@@ -13,7 +13,8 @@ namespace Pong.Sprites {
     public class Ball : Sprite {
         private bool _gameStarted;
         private int _timer;
-        private float _speedIncrementOverTime = 1f;
+        private float _startSpeed = 8f;
+        private float _speedIncrementOverTime = 2f;
 
         public Ball(Texture2D texture) : base(texture) {
             Reset();
@@ -90,7 +91,7 @@ namespace Pong.Sprites {
             _gameStarted = false;
             _timer = 0;
             Position = new Vector2((Resolution.GameWidth - _texture.Width) / 2, (Resolution.GameHeight - _texture.Height) / 2);
-            Speed = 6f;
+            Speed = _startSpeed;
 
             int startDirection = Game1.Random.Next(0, 4);
             switch (startDirection) {

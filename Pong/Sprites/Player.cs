@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace Pong.Sprites {
     public class Player : Sprite {
+        private float _aiTolerance = 10f;
         public bool ControlledByAI;
 
         public Player(Texture2D texture) : base(texture) {
-            Speed = 3f;
+            Speed = 5f;
         }
 
         private void GetPlayerVelocity() {
@@ -25,6 +26,18 @@ namespace Pong.Sprites {
         private void GetAIVelocity(List<Sprite> sprites) {
             foreach (var sprite in sprites) {
                 if (sprite is Ball) {
+                    if (sprite.Velocity.X < 0) {
+                        if (this.Rectangle.Center.Y < Resolution.GameHeight / 2 - Speed)
+                            Velocity.Y += Speed;
+                        if (this.Rectangle.Center.Y > Resolution.GameHeight / 2 + Speed)
+                            Velocity.Y -= Speed;
+                        return;
+                    }
+
+                    if (Math.Abs(sprite.Rectangle.Center.Y - this.Rectangle.Center.Y) < _aiTolerance) {
+                        Velocity.Y = 0;
+                        return;
+                    }
                     if (sprite.Rectangle.Center.Y < this.Rectangle.Center.Y) {
                         Velocity.Y -= Speed;
                     }
@@ -39,9 +52,10 @@ namespace Pong.Sprites {
             if (Input == null)
                 throw new Exception("Assign a value to Input");
 
-            if (ControlledByAI)
+            if (ControlledByAI) {
+                _aiTolerance = Game1.Random.Next(10, 50);
                 GetAIVelocity(sprites);
-            else
+            } else
                 GetPlayerVelocity();
 
             Position += Velocity;
