@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PongAndroid {
+namespace Android {
 
 
     public partial class Resource {

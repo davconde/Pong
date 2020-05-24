@@ -2,9 +2,10 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Pong;
 
-namespace PongAndroid {
-    [Activity(Label = "PongAndroid"
+namespace Android {
+    [Activity(Label = "Android"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"
