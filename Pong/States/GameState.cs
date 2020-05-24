@@ -52,14 +52,14 @@ namespace Pong.States {
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
                 new Player(_batTexture) {
-                    Position = new Vector2(20, Game1.ScreenHeight / 2 - _batTexture.Height / 2),
+                    Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2),
                     Input = new Input() {
                         UpKey = Keys.W,
                         DownKey = Keys.S
                     }
                 },
                 new Player(_batTexture) {
-                    Position = new Vector2(Game1.ScreenWidth - 20 - _batTexture.Width, Game1.ScreenHeight / 2 - _batTexture.Height / 2),
+                    Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2),
                     Input = new Input() {
                         UpKey = Keys.Up,
                         DownKey = Keys.Down

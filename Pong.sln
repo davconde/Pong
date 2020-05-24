@@ -12,7 +12,6 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Pong\Pong.projitems*{47488194-8639-4acf-b95b-f0d1496c86ae}*SharedItemsImports = 4
-		Pong\Pong.projitems*{6a27d0e9-eb3e-4964-adf8-3dc3d74d3a4f}*SharedItemsImports = 4
 		Pong\Pong.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +22,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{47488194-8639-4ACF-B95B-F0D1496C86AE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{47488194-8639-4ACF-B95B-F0D1496C86AE}.Debug|Any CPU.Build.0 = Debug|x86
 		{47488194-8639-4ACF-B95B-F0D1496C86AE}.Debug|x86.ActiveCfg = Debug|x86
 		{47488194-8639-4ACF-B95B-F0D1496C86AE}.Debug|x86.Build.0 = Debug|x86
 		{47488194-8639-4ACF-B95B-F0D1496C86AE}.Release|Any CPU.ActiveCfg = Release|x86

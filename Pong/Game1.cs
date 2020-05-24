@@ -23,8 +23,6 @@ namespace Pong {
         KeyboardState _currentKeys;
 
         public static Random Random;
-        public static int ScreenWidth;
-        public static int ScreenHeight;
         public static AudioEngine AudioEngine;
         public static WaveBank WaveBank;
         public static SoundBank SoundBank;
@@ -32,6 +30,8 @@ namespace Pong {
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            this.Window.ClientSizeChanged += delegate { Resolution.WasResized = true; };
         }
 
         public void ChangeState(State state) {
@@ -46,8 +46,7 @@ namespace Pong {
         /// </summary>
         protected override void Initialize() {
             Random = new Random();
-            ScreenWidth = graphics.PreferredBackBufferWidth;
-            ScreenHeight = graphics.PreferredBackBufferHeight;
+            Resolution.Initialize(graphics);
 
             graphics.HardwareModeSwitch = false;
             graphics.IsFullScreen = false;
@@ -92,6 +91,8 @@ namespace Pong {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+            Resolution.Update(this, graphics);
+
             _prevKeys = _currentKeys;
             _currentKeys = Keyboard.GetState();
 
@@ -124,8 +125,7 @@ namespace Pong {
             if (graphics.IsFullScreen) {
                 GraphicsDevice.SetRenderTarget(null);
                 spriteBatch.Begin();
-                spriteBatch.Draw(renderTarget, new Rectangle(0, 0,
-                    Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Resolution.ScreenWidth, Resolution.ScreenHeight), Color.White);
                 spriteBatch.End();
             }
 

@@ -37,8 +37,11 @@ namespace Pong.Components {
         public void Update(GameTime gameTime) {
             _prevMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+            Console.WriteLine(_currentMouse.X);
+            var mouseRectangle = new Rectangle((int)(_currentMouse.X / Resolution.Scale.X),
+                                               (int)(_currentMouse.Y / Resolution.Scale.Y),
+                                               1,
+                                               1);
 
             if (mouseRectangle.Intersects(Rectangle)) {
                 _isHovering = true;

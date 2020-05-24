@@ -27,6 +27,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Input.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resolution.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Score.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Ball.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Player.cs" />

@@ -52,12 +52,12 @@ namespace Pong.Sprites {
                 }
             }
 
-            if (Position.Y <= 0 || Position.Y + _texture.Height >= Game1.ScreenHeight) {
+            if (Position.Y <= 0 || Position.Y + _texture.Height >= Resolution.GameHeight) {
                 Velocity.Y = -Velocity.Y;
                 Game1.SoundBank.PlayCue("Wall");
             }
 
-            if (Position.X + _texture.Width >= Game1.ScreenWidth) {
+            if (Position.X + _texture.Width >= Resolution.GameWidth) {
                 GameState.Score.Score1++;
                 Game1.SoundBank.PlayCue("Score");
                 Reset();
@@ -89,7 +89,7 @@ namespace Pong.Sprites {
         private void Reset() {
             _gameStarted = false;
             _timer = 0;
-            Position = new Vector2((Game1.ScreenWidth - _texture.Width) / 2, (Game1.ScreenHeight - _texture.Height) / 2);
+            Position = new Vector2((Resolution.GameWidth - _texture.Width) / 2, (Resolution.GameHeight - _texture.Height) / 2);
             Speed = 6f;
 
             int startDirection = Game1.Random.Next(0, 4);

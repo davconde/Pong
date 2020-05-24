@@ -45,7 +45,7 @@ namespace Pong.Sprites {
                 GetPlayerVelocity();
 
             Position += Velocity;
-            Position.Y = MathHelper.Clamp(Position.Y, 0, Game1.ScreenHeight - _texture.Height);
+            Position.Y = MathHelper.Clamp(Position.Y, 0, Resolution.GameHeight - _texture.Height);
             Velocity.Y = 0;
         }
 
