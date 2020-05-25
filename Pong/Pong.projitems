@@ -13,18 +13,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-    <None Include="$(MSBuildThisFileDirectory)Content\Sound\GameAudio.xap" />
-    <None Include="$(MSBuildThisFileDirectory)Content\Sound\GameAudio.xgs">
+    <None Include="$(MSBuildThisFileDirectory)Content\Sound\XACT\GameAudio.xap" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Sound\XACT\GameAudio.xgs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Sound\Sound Bank.xsb">
+    <None Include="$(MSBuildThisFileDirectory)Content\Sound\XACT\Sound Bank.xsb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Sound\Wave Bank.xwb">
+    <None Include="$(MSBuildThisFileDirectory)Content\Sound\XACT\Wave Bank.xwb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AudioManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Input.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resolution.cs" />

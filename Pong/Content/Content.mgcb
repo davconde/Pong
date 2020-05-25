@@ -27,6 +27,24 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ScoreFont.spritefont
 
+#begin Sound/Pad.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Pad.wav
+
+#begin Sound/Score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Score.wav
+
+#begin Sound/Wall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/Wall.wav
+
 #begin Sprites/Background.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -25,9 +25,6 @@ namespace Pong {
         private float _aspectRatio;
 
         public static Random Random;
-        public static AudioEngine AudioEngine;
-        public static WaveBank WaveBank;
-        public static SoundBank SoundBank;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -99,9 +96,7 @@ namespace Pong {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            AudioEngine = new AudioEngine("Content/Sound/GameAudio.xgs");
-            WaveBank = new WaveBank(AudioEngine, "Content/Sound/Wave Bank.xwb");
-            SoundBank = new SoundBank(AudioEngine, "Content/Sound/Sound Bank.xsb");
+            AudioManager.Initialize(Content);
 
             _currentState = new MainMenuState(this, graphics.GraphicsDevice, Content);
         }

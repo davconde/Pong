@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using Pong.States;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Pong.Sprites {
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites) {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) || TouchPanel.GetState().Count > 0)
                 _gameStarted = true;
 
             if (!_gameStarted)
@@ -40,32 +41,30 @@ namespace Pong.Sprites {
 
                 if (this.Velocity.X > 0 && this.IsTouchingLeft(sprite)) {
                     this.Velocity = GetPadBounce(sprite);
-                    Game1.SoundBank.PlayCue("Pad");
                 } else if (this.Velocity.X < 0 && this.IsTouchingRight(sprite)) {
                     this.Velocity = GetPadBounce(sprite);
-                    Game1.SoundBank.PlayCue("Pad");
                 } else if (this.Velocity.Y > 0 && this.IsTouchingTop(sprite)) {
                     this.Velocity.Y = -this.Velocity.Y;
-                    Game1.SoundBank.PlayCue("Pad");
+                    AudioManager.PlayCue("Pad");
                 } else if (this.Velocity.Y < 0 && this.IsTouchingBottom(sprite)) {
                     this.Velocity.Y = -this.Velocity.Y;
-                    Game1.SoundBank.PlayCue("Pad");
+                    AudioManager.PlayCue("Pad");
                 }
             }
 
             if (Position.Y <= 0 || Position.Y + _texture.Height >= Resolution.GameHeight) {
                 Velocity.Y = -Velocity.Y;
-                Game1.SoundBank.PlayCue("Wall");
+                AudioManager.PlayCue("Wall");
             }
 
             if (Position.X + _texture.Width >= Resolution.GameWidth) {
                 GameState.Score.Score1++;
-                Game1.SoundBank.PlayCue("Score");
+                AudioManager.PlayCue("Score");
                 Reset();
                 return;
             } else if (Position.X <= 0) {
                 GameState.Score.Score2++;
-                Game1.SoundBank.PlayCue("Score");
+                AudioManager.PlayCue("Score");
                 Reset();
                 return;
             }
@@ -80,6 +79,8 @@ namespace Pong.Sprites {
             if (collisionRect.IsEmpty) {
                 return Velocity;
             }
+
+            AudioManager.PlayCue("Pad");
 
             float collisionPointOnPad = (float)(collisionRect.Center.Y - padRect.Top) / (padRect.Bottom - padRect.Top) - 0.5f;
             Vector2 returnVector = new Vector2((float)Math.Cos(collisionPointOnPad * Math.PI / 2) * -Math.Sign(Velocity.X), (float)Math.Sin(collisionPointOnPad * Math.PI / 2));
