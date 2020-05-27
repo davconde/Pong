@@ -27,23 +27,14 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ScoreFont.spritefont
 
-#begin Sound/Pad.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/Pad.wav
+#begin Sound/GameAudio.xgs
+/copy:Sound/GameAudio.xgs
 
-#begin Sound/Score.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/Score.wav
+#begin Sound/Sound Bank.xsb
+/copy:Sound/Sound Bank.xsb
 
-#begin Sound/Wall.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/Wall.wav
+#begin Sound/Wave Bank.xwb
+/copy:Sound/Wave Bank.xwb
 
 #begin Sprites/Background.png
 /importer:TextureImporter
