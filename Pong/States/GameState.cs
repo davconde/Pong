@@ -55,14 +55,20 @@ namespace Pong.States {
                     Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2),
                     Input = new Input() {
                         UpKey = Keys.W,
-                        DownKey = Keys.S
-                    }
+                        DownKey = Keys.S,
+
+                        UpArea = new Rectangle(0, 0, Resolution.GameWidth / 2, Resolution.GameHeight / 2),
+                        DownArea = new Rectangle(0, Resolution.GameHeight / 2, Resolution.GameWidth / 2, Resolution.GameHeight)
+        }
                 },
                 new Player(_batTexture) {
                     Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2),
                     Input = new Input() {
                         UpKey = Keys.Up,
-                        DownKey = Keys.Down
+                        DownKey = Keys.Down,
+
+                        UpArea = new Rectangle(Resolution.GameWidth / 2, 0, Resolution.GameWidth, Resolution.GameHeight / 2),
+                        DownArea = new Rectangle(Resolution.GameWidth / 2, Resolution.GameHeight / 2, Resolution.GameWidth, Resolution.GameHeight)
                     }
                 },
                 new Ball(_ballTexture)

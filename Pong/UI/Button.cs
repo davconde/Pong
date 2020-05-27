@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,14 @@ namespace Pong.Components {
         }
 
         public void Update(GameTime gameTime) {
+#if ANDROID
+            if (TouchPanel.GetState().Count > 0)
+                foreach (TouchLocation touch in TouchPanel.GetState())
+                    if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
+                        if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(this.Rectangle))
+                            Click?.Invoke(this, new EventArgs());
+#endif
+
             _prevMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 

@@ -27,6 +27,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/ScoreFont.spritefont
 
+#begin Sound/GameAudio.xgs
+/copy:Sound/GameAudio.xgs
+
+#begin Sound/Sound Bank.xsb
+/copy:Sound/Sound Bank.xsb
+
+#begin Sound/Wave Bank.xwb
+/copy:Sound/Wave Bank.xwb
+
 #begin Sprites/Background.png
 /importer:TextureImporter
 /processor:TextureProcessor

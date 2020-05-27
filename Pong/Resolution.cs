@@ -10,13 +10,11 @@ namespace Pong {
         static public Vector2 Scale { get; set; }
         static public int GameWidth { get; set; }
         static public int GameHeight { get; set; }
-#if WINDOWS
         static public int ScreenWidth { get; set; }
         static public int ScreenHeight { get; set; }
         static public Boolean WasResized { get; set; }
         static private int PreviousWindowWidth;
         static private int PreviousWindowHeight;
-#endif
 
 
         static public void Initialize(GraphicsDeviceManager graphics, int gameWidth, int gameHeight) {
@@ -24,21 +22,17 @@ namespace Pong {
             graphics.PreferredBackBufferHeight = gameHeight;
             graphics.ApplyChanges();
 
-#if WINDOWS
             ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             PreviousWindowWidth = graphics.PreferredBackBufferWidth;
             PreviousWindowHeight = graphics.PreferredBackBufferHeight;
             WasResized = false;
-#endif
 
             GameWidth = gameWidth;
             GameHeight = gameHeight;
             CalculateMatrix(graphics);
         }
 
-
-#if WINDOWS
         static public void Update(Game game, GraphicsDeviceManager graphics) {
             if (WasResized) {
                 if (graphics.PreferredBackBufferWidth < Resolution.GameWidth / 4) {
@@ -56,7 +50,6 @@ namespace Pong {
                 WasResized = false;
             }
         }
-#endif
 
 
         static void CalculateMatrix(GraphicsDeviceManager graphics) {
