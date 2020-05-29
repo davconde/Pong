@@ -19,6 +19,13 @@ namespace Android {
             var g = new Game1();
             SetContentView((View)g.Services.GetService(typeof(View)));
             g.Run();
+
+            SystemUiFlags flags = SystemUiFlags.HideNavigation
+                                  | SystemUiFlags.Fullscreen
+                                  | SystemUiFlags.ImmersiveSticky
+                                  | SystemUiFlags.Immersive;
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
+            Immersive = true;
         }
     }
 }
