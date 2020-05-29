@@ -146,8 +146,8 @@ namespace Pong {
             _currentState.Draw(gameTime, spriteBatch);
 
             GraphicsDevice.SetRenderTarget(null);
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            spriteBatch.Draw(renderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Resolution.ScaleMatrix);
+            spriteBatch.Draw(renderTarget, Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
