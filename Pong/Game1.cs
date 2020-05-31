@@ -74,13 +74,12 @@ namespace Pong {
             graphics.HardwareModeSwitch = false;
             graphics.IsFullScreen = false;
 
-            renderTarget = new RenderTarget2D(
-                GraphicsDevice,
-                GraphicsDevice.PresentationParameters.BackBufferWidth,
-                GraphicsDevice.PresentationParameters.BackBufferHeight,
-                false,
-                GraphicsDevice.PresentationParameters.BackBufferFormat,
-                DepthFormat.Depth24);
+            renderTarget = new RenderTarget2D(GraphicsDevice,
+                                              GraphicsDevice.PresentationParameters.BackBufferWidth,
+                                              GraphicsDevice.PresentationParameters.BackBufferHeight,
+                                              false,
+                                              GraphicsDevice.PresentationParameters.BackBufferFormat,
+                                              DepthFormat.Depth24);
 
             _aspectRatio = GraphicsDevice.Viewport.AspectRatio;
             _oldWindowSize = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);

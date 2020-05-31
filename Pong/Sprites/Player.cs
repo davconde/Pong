@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Pong.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace Pong.Sprites {
         private float _aiTolerance = 10f;
         public bool ControlledByAI;
 
-        public Player(Texture2D texture) : base(texture) {
+        public Player(Texture2D texture, Input input) : base(texture) {
+            Input = input;
+            Input.Parent = this;
             Speed = 5f;
         }
 

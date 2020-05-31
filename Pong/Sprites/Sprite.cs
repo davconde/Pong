@@ -22,6 +22,12 @@ namespace Pong.Sprites {
             }
         }
 
+        public Point Center {
+            get {
+                return new Point((int)Position.X + _texture.Width / 2, (int)Position.Y + _texture.Height / 2);
+            }
+        }
+
         public Sprite(Texture2D texture) {
             _texture = texture;
         }

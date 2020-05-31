@@ -26,8 +26,8 @@ namespace Pong.States {
                 return _numOfPlayers;
             }
             set {
-               _numOfPlayers = value;
-               var players = _numOfPlayers;
+                _numOfPlayers = value;
+                var players = _numOfPlayers;
                 foreach (var sprite in _sprites) {
                     if (sprite is Player) {
                         if (players > 0)
@@ -51,25 +51,11 @@ namespace Pong.States {
 
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
-                new Player(_batTexture) {
-                    Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2),
-                    Input = new Input() {
-                        UpKey = Keys.W,
-                        DownKey = Keys.S,
-
-                        UpArea = new Rectangle(0, 0, Resolution.GameWidth / 2, Resolution.GameHeight / 2),
-                        DownArea = new Rectangle(0, Resolution.GameHeight / 2, Resolution.GameWidth / 2, Resolution.GameHeight)
-        }
+                new Player(_batTexture, new Input() { UpKey = Keys.W, DownKey = Keys.S }) {
+                    Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
-                new Player(_batTexture) {
-                    Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2),
-                    Input = new Input() {
-                        UpKey = Keys.Up,
-                        DownKey = Keys.Down,
-
-                        UpArea = new Rectangle(Resolution.GameWidth / 2, 0, Resolution.GameWidth, Resolution.GameHeight / 2),
-                        DownArea = new Rectangle(Resolution.GameWidth / 2, Resolution.GameHeight / 2, Resolution.GameWidth, Resolution.GameHeight)
-                    }
+                new Player(_batTexture, new Input() { UpKey = Keys.Up, DownKey = Keys.Down }) {
+                    Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
                 new Ball(_ballTexture)
             };
