@@ -8,10 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pong.Components {
-    public class Button : IUIComponent {
-        private MouseState _prevMouse;
-        private MouseState _currentMouse;
+namespace Pong.UI {
+    public partial class Button : IUIComponent {
         private bool _isHovering;
         private Texture2D _texture;
         private SpriteFont _font;
@@ -33,32 +31,6 @@ namespace Pong.Components {
             _font = font;
 
             TextColor = Color.White;
-        }
-
-        public void Update(GameTime gameTime) {
-#if ANDROID
-            if (TouchPanel.GetState().Count > 0)
-                foreach (TouchLocation touch in TouchPanel.GetState())
-                    if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
-                        if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(this.Rectangle))
-                            Click?.Invoke(this, new EventArgs());
-#endif
-
-            _prevMouse = _currentMouse;
-            _currentMouse = Mouse.GetState();
-
-            var mouseRectangle = new Rectangle((int)(_currentMouse.X / Resolution.Scale.X),
-                                               (int)(_currentMouse.Y / Resolution.Scale.Y),
-                                               1,
-                                               1);
-
-            if (mouseRectangle.Intersects(Rectangle)) {
-                _isHovering = true;
-
-                if (_currentMouse.LeftButton == ButtonState.Released && _prevMouse.LeftButton == ButtonState.Pressed)
-                    Click?.Invoke(this, new EventArgs());
-            } else
-                _isHovering = false;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
