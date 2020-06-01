@@ -14,5 +14,6 @@ namespace Pong.IO {
 
         public Keys UpKey;
         public Keys DownKey;
+        public Rectangle TouchArea;
     }
 }

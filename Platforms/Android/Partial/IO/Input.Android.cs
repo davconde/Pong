@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Pong.IO {
@@ -18,8 +19,9 @@ namespace Pong.IO {
                 if (TouchPanel.GetState().Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
-                            if ((int)touch.Position.Y < (int)Parent.Center.Y - Parent.Speed)
-                                return true;
+                            if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))
+                                if ((int)touch.Position.Y < (int)Parent.Center.Y - Parent.Speed)
+                                    return true;
                 return false;
             }
         }
@@ -29,8 +31,9 @@ namespace Pong.IO {
                 if (TouchPanel.GetState().Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
-                            if ((int)touch.Position.Y > (int)Parent.Center.Y + Parent.Speed)
-                                return true;
+                            if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))
+                                if ((int)touch.Position.Y > (int)Parent.Center.Y + Parent.Speed)
+                                    return true;
                 return false;
             }
         }
