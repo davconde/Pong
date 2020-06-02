@@ -21,7 +21,7 @@ namespace Pong.UI {
             if (Inputs.CurrentTouchs.Count > 0) {
                 TouchLocation touch = Inputs.CurrentTouchs[0];
 
-                if (this.Rectangle.Contains(touch.Position)) {
+                if (this.Rectangle.Contains(Inputs.TouchPosition(touch))) {
                     if (touch.State == TouchLocationState.Pressed)
                         _pressingDown = true;
                     if (_pressingDown && (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved))

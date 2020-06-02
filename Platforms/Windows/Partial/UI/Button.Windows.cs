@@ -10,12 +10,7 @@ using System.Threading.Tasks;
 namespace Pong.UI {
     public partial class Button {
         public void Update(GameTime gameTime) {
-            var mouseRectangle = new Rectangle((int)(Inputs.CurrentMouse.X / Resolution.Scale.X),
-                                               (int)(Inputs.CurrentMouse.Y / Resolution.Scale.Y),
-                                               1,
-                                               1);
-
-            if (mouseRectangle.Intersects(Rectangle)) {
+            if (this.Rectangle.Contains(Inputs.CurrentMousePosition)) {
                 _isHovering = true;
 
                 if (Inputs.CurrentMouse.LeftButton == ButtonState.Released && Inputs.PrevMouse.LeftButton == ButtonState.Pressed)
