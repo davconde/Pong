@@ -14,9 +14,6 @@ namespace Pong.States {
         protected GraphicsDevice _graphicsDevice;
         protected ContentManager _content;
 
-        protected KeyboardState _prevKeys;
-        protected KeyboardState _currentKeys;
-
         public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) {
             _game = game;
             _graphicsDevice = graphicsDevice;

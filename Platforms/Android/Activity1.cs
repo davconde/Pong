@@ -5,7 +5,7 @@ using Android.Views;
 using Pong;
 
 namespace Android {
-    [Activity(Label = "Android"
+    [Activity(Label = "Pong"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Pong.IO;
 using Pong.UI;
 using System;
 using System.Collections.Generic;
@@ -53,10 +54,7 @@ namespace Pong.States {
         }
 
         public override void Update(GameTime gameTime) {
-            _prevKeys = _currentKeys;
-            _currentKeys = Keyboard.GetState();
-
-            if (!_currentKeys.IsKeyDown(Keys.Escape) && _prevKeys.IsKeyDown(Keys.Escape))
+            if ((!Inputs.CurrentKeys.IsKeyDown(Keys.Escape) && Inputs.PrevKeys.IsKeyDown(Keys.Escape)) || GamePad.GetState(0).IsButtonDown(Buttons.Back))
                 _game.Exit();
 
             foreach (var component in _components)

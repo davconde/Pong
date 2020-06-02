@@ -62,12 +62,9 @@ namespace Pong.States {
 
             Score = new Score(_font);
         }
-
+        
         public override void Update(GameTime gameTime) {
-            _prevKeys = _currentKeys;
-            _currentKeys = Keyboard.GetState();
-
-            if (!_currentKeys.IsKeyDown(Keys.Escape) && _prevKeys.IsKeyDown(Keys.Escape))
+            if ((!Inputs.CurrentKeys.IsKeyDown(Keys.Escape) && Inputs.PrevKeys.IsKeyDown(Keys.Escape)) || GamePad.GetState(0).IsButtonDown(Buttons.Back))
                 _game.ChangeState(new MainMenuState(_game, _graphicsDevice, _content));
 
             foreach (var sprite in _sprites)
