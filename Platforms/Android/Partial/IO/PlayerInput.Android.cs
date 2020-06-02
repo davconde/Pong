@@ -13,10 +13,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Pong.IO {
-    public partial class Input {
+    public partial class PlayerInput {
         public bool Up {
             get {
-                if (TouchPanel.GetState().Count > 0)
+                if (Inputs.CurrentTouchs.Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
                             if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))
@@ -28,7 +28,7 @@ namespace Pong.IO {
 
         public bool Down {
             get {
-                if (TouchPanel.GetState().Count > 0)
+                if (Inputs.CurrentTouchs.Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
                             if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))

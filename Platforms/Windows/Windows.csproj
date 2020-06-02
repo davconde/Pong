@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Partial\IO\Input.Windows.cs" />
+    <Compile Include="Partial\IO\PlayerInput.Windows.cs" />
     <Compile Include="Partial\UI\Button.Windows.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

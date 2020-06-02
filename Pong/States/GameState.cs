@@ -51,10 +51,10 @@ namespace Pong.States {
 
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
-                new Player(_batTexture, new Input() { UpKey = Keys.W, DownKey = Keys.S, TouchArea = new Rectangle(0, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
+                new Player(_batTexture, new PlayerInput() { UpKey = Keys.W, DownKey = Keys.S, TouchArea = new Rectangle(0, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
                     Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
-                new Player(_batTexture, new Input() { UpKey = Keys.Up, DownKey = Keys.Down, TouchArea = new Rectangle(Resolution.GameWidth / 2, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
+                new Player(_batTexture, new PlayerInput() { UpKey = Keys.Up, DownKey = Keys.Down, TouchArea = new Rectangle(Resolution.GameWidth / 2, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
                     Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
                 new Ball(_ballTexture)

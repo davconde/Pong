@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pong.IO {
-    public partial class Input {
+    public partial class PlayerInput {
         public bool Up {
             get {
-                return Keyboard.GetState().IsKeyDown(UpKey);
+                return Inputs.CurrentKeys.IsKeyDown(UpKey);
             }
         }
 
         public bool Down {
             get {
-                return Keyboard.GetState().IsKeyDown(DownKey);
+                return Inputs.CurrentKeys.IsKeyDown(DownKey);
             }
         }
     }

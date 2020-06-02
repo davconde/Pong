@@ -14,7 +14,7 @@ namespace Pong.Sprites {
         public Vector2 Position;
         public Vector2 Velocity;
         public float Speed;
-        public Input Input;
+        public PlayerInput Input;
 
         public Rectangle Rectangle {
             get {

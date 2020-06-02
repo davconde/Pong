@@ -19,8 +19,6 @@ namespace Pong {
 
         private State _currentState;
         private State _nextState;
-        private KeyboardState _prevKeys;
-        private KeyboardState _currentKeys;
         private Point _oldWindowSize;
         private float _aspectRatio;
 
@@ -115,16 +113,14 @@ namespace Pong {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
             Resolution.Update(this, graphics);
-
-            _prevKeys = _currentKeys;
-            _currentKeys = Keyboard.GetState();
+            Inputs.Update();
 
             if (_nextState != null) {
                 _currentState = _nextState;
                 _nextState = null;
             }
 
-            if (_currentKeys.IsKeyDown(Keys.F) && !_prevKeys.IsKeyDown(Keys.F)) {
+            if (Inputs.CurrentKeys.IsKeyDown(Keys.F) && !Inputs.PrevKeys.IsKeyDown(Keys.F)) {
                 graphics.ToggleFullScreen();
             }
 

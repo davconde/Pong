@@ -11,15 +11,15 @@ using Android.Views;
 using Android.Widget;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
+using Pong.IO;
 
 namespace Pong.UI {
     public partial class Button {
         private bool _pressingDown;
 
         public void Update(GameTime gameTime) {
-            TouchCollection touchState = TouchPanel.GetState();
-            if (touchState.Count > 0) {
-                TouchLocation touch = touchState[0];
+            if (Inputs.CurrentTouchs.Count > 0) {
+                TouchLocation touch = Inputs.CurrentTouchs[0];
 
                 if (this.Rectangle.Contains(touch.Position)) {
                     if (touch.State == TouchLocationState.Pressed)
@@ -35,6 +35,9 @@ namespace Pong.UI {
                     _pressingDown = false;
                     _isHovering = false;
                 }
+            } else {
+                _pressingDown = false;
+                _isHovering = false;
             }
         }
     }

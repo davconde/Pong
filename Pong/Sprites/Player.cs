@@ -13,7 +13,7 @@ namespace Pong.Sprites {
         private float _aiTolerance = 10f;
         public bool ControlledByAI;
 
-        public Player(Texture2D texture, Input input) : base(texture) {
+        public Player(Texture2D texture, PlayerInput input) : base(texture) {
             Input = input;
             Input.Parent = this;
             Speed = 5f;

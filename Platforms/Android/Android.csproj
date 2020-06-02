@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Partial\IO\Input.Android.cs" />
+    <Compile Include="Partial\IO\PlayerInput.Android.cs" />
     <Compile Include="Partial\UI\Button.Android.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

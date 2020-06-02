@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pong.IO {
-    public partial class Input {
+    public partial class PlayerInput {
         public Sprite Parent;
 
         public Keys UpKey;
