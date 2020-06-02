@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Effects/Blur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Blur.fx
+
 #begin Fonts/ButtonTextFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

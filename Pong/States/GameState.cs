@@ -19,8 +19,25 @@ namespace Pong.States {
         private Texture2D _ballTexture;
         private List<Sprite> _sprites;
         private int _numOfPlayers;
+        private bool _demoMode;
+        private Effect _screenBlur;
 
         public static Score Score;
+
+        public bool DemoMode {
+            get {
+                return _demoMode;
+            }
+            set {
+                _demoMode = value;
+                foreach (var sprite in _sprites) {
+                    if (sprite is Ball) {
+                        ((Ball)sprite).AutoStart = true;
+                    }
+                }
+            }
+        }
+
         public int NumberOfPlayers {
             get {
                 return _numOfPlayers;
@@ -42,12 +59,11 @@ namespace Pong.States {
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) :
             base(game, graphicsDevice, content) {
-            game.IsMouseVisible = false;
-
             _font = content.Load<SpriteFont>("Fonts/ScoreFont");
             _backgroundTexture = content.Load<Texture2D>("Sprites/Background");
             _batTexture = content.Load<Texture2D>("Sprites/Bat");
             _ballTexture = content.Load<Texture2D>("Sprites/Ball");
+            _screenBlur = content.Load<Effect>("Effects/Blur");
 
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
@@ -62,7 +78,7 @@ namespace Pong.States {
 
             Score = new Score(_font);
         }
-        
+
         public override void Update(GameTime gameTime) {
             if ((!Inputs.CurrentKeys.IsKeyDown(Keys.Escape) && Inputs.PrevKeys.IsKeyDown(Keys.Escape)) || GamePad.GetState(0).IsButtonDown(Buttons.Back))
                 _game.ChangeState(new MainMenuState(_game, _graphicsDevice, _content));
@@ -72,7 +88,10 @@ namespace Pong.States {
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            if (DemoMode)
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _screenBlur);
+            else
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);

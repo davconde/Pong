@@ -31,6 +31,8 @@ namespace Pong {
             Window.ClientSizeChanged += delegate { Resolution.WasResized = true; };
             Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
             Window.AllowUserResizing = true;
+
+            IsMouseVisible = true;
         }
 
         void Window_ClientSizeChanged(object sender, EventArgs e) {

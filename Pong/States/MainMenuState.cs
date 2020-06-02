@@ -16,11 +16,10 @@ namespace Pong.States {
         private Texture2D _titleTexture;
         private Texture2D _buttonTexture;
         private List<IUIComponent> _components;
+        private State _demoGameState;
 
         public MainMenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) :
             base(game, graphicsDevice, content) {
-            game.IsMouseVisible = true;
-
             _font = content.Load<SpriteFont>("Fonts/ButtonTextFont");
             _titleTexture = content.Load<Texture2D>("Sprites/Title");
             _buttonTexture = content.Load<Texture2D>("Sprites/Button");
@@ -43,6 +42,8 @@ namespace Pong.States {
                 onePlayerButton,
                 twoPlayerButton
             };
+
+            _demoGameState = new GameState(_game, _graphicsDevice, _content) { NumberOfPlayers = 0, DemoMode = true };
         }
 
         private void OnePlayerButton_Click(object sender, EventArgs e) {
@@ -59,9 +60,13 @@ namespace Pong.States {
 
             foreach (var component in _components)
                 component.Update(gameTime);
+
+            _demoGameState.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+            _demoGameState.Draw(gameTime, spriteBatch);
+
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             spriteBatch.Draw(_titleTexture, new Vector2(580, 150), Color.White);

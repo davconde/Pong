@@ -17,12 +17,14 @@ namespace Pong.Sprites {
         private float _startSpeed = 8f;
         private float _speedIncrementOverTime = 2f;
 
+        public bool AutoStart = false;
+
         public Ball(Texture2D texture) : base(texture) {
             Reset();
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites) {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) || TouchPanel.GetState().Count > 0)
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) || TouchPanel.GetState().Count > 0 || AutoStart)
                 _gameStarted = true;
 
             if (!_gameStarted)
@@ -80,6 +82,7 @@ namespace Pong.Sprites {
                 return Velocity;
             }
 
+            ((Player)pad).JustBounced = true;
             AudioManager.PlayCue("Pad");
 
             float collisionPointOnPad = (float)(collisionRect.Center.Y - padRect.Top) / (padRect.Bottom - padRect.Top) - 0.5f;
