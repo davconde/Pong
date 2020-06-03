@@ -3,7 +3,6 @@
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
-/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -13,11 +12,11 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Effects/Blur.fx
+#begin Effects/DemoEffect.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:Effects/Blur.fx
+/build:Effects/DemoEffect.fx
 
 #begin Fonts/ButtonTextFont.spritefont
 /importer:FontDescriptionImporter

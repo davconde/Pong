@@ -20,7 +20,7 @@ namespace Pong.States {
         private List<Sprite> _sprites;
         private int _numOfPlayers;
         private bool _demoMode;
-        private Effect _screenBlur;
+        private Effect _demoEffect;
 
         public static Score Score;
 
@@ -63,7 +63,7 @@ namespace Pong.States {
             _backgroundTexture = content.Load<Texture2D>("Sprites/Background");
             _batTexture = content.Load<Texture2D>("Sprites/Bat");
             _ballTexture = content.Load<Texture2D>("Sprites/Ball");
-            _screenBlur = content.Load<Effect>("Effects/Blur");
+            _demoEffect = content.Load<Effect>("Effects/DemoEffect");
 
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
@@ -89,7 +89,7 @@ namespace Pong.States {
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
             if (DemoMode)
-                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _screenBlur);
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _demoEffect);
             else
                 spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
