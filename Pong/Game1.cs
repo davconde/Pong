@@ -35,7 +35,7 @@ namespace Pong {
             IsMouseVisible = true;
         }
 
-        void Window_ClientSizeChanged(object sender, EventArgs e) {
+        private void Window_ClientSizeChanged(object sender, EventArgs e) {
             if (graphics.IsFullScreen)
                 return;
 
@@ -59,6 +59,7 @@ namespace Pong {
         public void ChangeState(State state) {
             _nextState = state;
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.

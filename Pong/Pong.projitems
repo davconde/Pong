@@ -26,9 +26,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)States\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\IUIComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\Effects\DemoEffect.fx" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Effects\TitleEffect.fx" />
   </ItemGroup>
 </Project>

@@ -23,11 +23,6 @@ struct VertexShaderOutput
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-	/*float4 tex;
-	tex = SpriteTexture.Sample(SpriteTextureSampler, input.TextureCoordinates.xy) * .6f;
-	tex += SpriteTexture.Sample(SpriteTextureSampler, input.TextureCoordinates.xy + (0.005)) * .2f;
-	return tex;*/
-
 	return tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color / 4;
 }
 
