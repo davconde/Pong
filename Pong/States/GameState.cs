@@ -78,7 +78,7 @@ namespace Pong.States {
 
             Score = new Score(_font);
 
-            PlatformSpecificInitialize();
+            PlatformSpecificInitialize(game, graphicsDevice, content);
         }
 
         public override void Update(GameTime gameTime) {

@@ -23,7 +23,7 @@ namespace Pong.States {
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public abstract void PlatformSpecificInitialize();
+        public abstract void PlatformSpecificInitialize(Game1 game, GraphicsDevice graphicsDevice, ContentManager content);
         public abstract void PlatformSpecificUpdate(GameTime gameTime);
         public abstract void PlatformSpecificDraw(GameTime gameTime, SpriteBatch spriteBatch);
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pong.States {
     public partial class GameState : State {
-        public override void PlatformSpecificInitialize() {
+        public override void PlatformSpecificInitialize(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) {
             
         }
 

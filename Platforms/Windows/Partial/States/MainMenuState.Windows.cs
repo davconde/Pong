@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Pong.UI;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pong.States {
     public partial class MainMenuState : State {
-        public override void PlatformSpecificInitialize() {
+        public override void PlatformSpecificInitialize(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) {
 
         }
 

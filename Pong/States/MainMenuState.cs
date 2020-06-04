@@ -59,7 +59,7 @@ namespace Pong.States {
             };
 
             _demoGameState = new GameState(_game, _graphicsDevice, _content) { NumberOfPlayers = 0, DemoMode = true };
-            PlatformSpecificInitialize();
+            PlatformSpecificInitialize(game, graphicsDevice, content);
         }
 
         private void OnePlayerButton_Click(object sender, EventArgs e) {
