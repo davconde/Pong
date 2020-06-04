@@ -18,6 +18,7 @@ namespace Pong.UI {
         public bool Clicked;
         public string Text;
         public Color TextColor;
+        public bool Selected;
         public Rectangle Rectangle {
             get {
                 return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
@@ -30,14 +31,14 @@ namespace Pong.UI {
             _texture = texture;
             _font = font;
 
-            TextColor = Color.White;
+            TextColor = new Color(Color.White, 0.05f);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-            var color = Color.White;
+            var color = new Color(Color.White, 0.05f);
 
-            if (_isHovering)
-                color = Color.Gray;
+            if (_isHovering || Selected)
+                color = new Color(Color.Gray, 0.05f);
 
             spriteBatch.Draw(_texture, Position, color);
 

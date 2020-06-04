@@ -18,5 +18,24 @@ namespace Pong.UI {
             } else
                 _isHovering = false;
         }
+
+        public static void CheckKeyboardSelection(ref int? selection, List<IUIComponent> components) {
+            foreach (var component in components)
+                ((Button)component).Selected = false;
+
+            if (Inputs.CurrentMouse.Position != Inputs.PrevMouse.Position)
+                selection = null;
+            else {
+                if (Inputs.CurrentKeys.IsKeyDown(Keys.Down) && !Inputs.PrevKeys.IsKeyDown(Keys.Down))
+                    selection = ((selection ?? -1) + 1) % components.Count;
+                if (Inputs.CurrentKeys.IsKeyDown(Keys.Up) && !Inputs.PrevKeys.IsKeyDown(Keys.Up))
+                    selection = (selection ?? 1) - 1 < 0 ? components.Count - 1 : (selection ?? 1) - 1;
+                if (selection != null && components[(int)selection] is Button) {
+                    ((Button)components[(int)selection]).Selected = true;
+                }
+                if (Inputs.CurrentKeys.IsKeyDown(Keys.Enter))
+                    ((Button)components[(int)selection]).Click?.Invoke((Button)components[(int)selection], new EventArgs());
+            }
+        }
     }
 }

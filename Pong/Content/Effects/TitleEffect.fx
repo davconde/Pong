@@ -29,14 +29,15 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 Color;
+	float CycleVar = cos(PI / 2 * Time);
+	float AngularFreq = 2 * PI / TimePeriod;
 	Color = tex2D(SpriteTextureSampler, input.TextureCoordinates.xy) * float4(1, 0.05, 0.05, 1);
-	Color += tex2D(SpriteTextureSampler, input.TextureCoordinates.xy + (0.01)) * float4(0.05, 1, 0.05, 1);
-	Color += tex2D(SpriteTextureSampler, input.TextureCoordinates.xy - (0.01)) * float4(0.05, 0.05, 1, 1);
-	Color *= cos(input.TextureCoordinates.x * Time * Speed * 2 * PI / TimePeriod);
-	Color *= sin(input.TextureCoordinates.y * Time * Speed * 2 * PI / TimePeriod);
-	return Color * 4;
+	Color += tex2D(SpriteTextureSampler, input.TextureCoordinates.xy + 0.05 * CycleVar * cos(AngularFreq * (input.TextureCoordinates.x / Speed + Time))) * float4(0.05, 1, 0.05, 1);
+	Color += tex2D(SpriteTextureSampler, input.TextureCoordinates.xy - 0.05 * CycleVar * sin(AngularFreq * (input.TextureCoordinates.y / Speed + Time))) * float4(0.05, 0.05, 1, 1);
 
-	//return tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;
+	float tsw = Time * Speed * AngularFreq;
+	Color *= cos(tsw * (input.TextureCoordinates.x - PI / 2 * input.TextureCoordinates.y ));
+	return Color;
 }
 
 technique SpriteDrawing

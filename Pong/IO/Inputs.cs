@@ -42,7 +42,7 @@ namespace Pong.IO {
         }
 
         public static Vector2 TouchPosition(TouchLocation touchLocation) {
-            return Vector2.Transform(touchLocation.Position, Resolution.ScaleMatrix);
+            return Vector2.Transform(touchLocation.Position, Matrix.Invert(Resolution.ScaleMatrix));
             //return new Vector2(touchLocation.Position.X / Resolution.Scale.X, touchLocation.Position.Y / Resolution.Scale.Y);
         }
     }

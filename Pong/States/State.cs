@@ -22,5 +22,9 @@ namespace Pong.States {
 
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public abstract void PlatformSpecificInitialize();
+        public abstract void PlatformSpecificUpdate(GameTime gameTime);
+        public abstract void PlatformSpecificDraw(GameTime gameTime, SpriteBatch spriteBatch);
     }
 }

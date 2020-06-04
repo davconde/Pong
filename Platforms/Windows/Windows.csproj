@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Partial\IO\PlayerInput.Windows.cs" />
+    <Compile Include="Partial\States\GameState.Windows.cs" />
+    <Compile Include="Partial\States\MainMenuState.Windows.cs" />
     <Compile Include="Partial\UI\Button.Windows.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

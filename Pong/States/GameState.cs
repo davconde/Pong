@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pong.States {
-    public class GameState : State {
+    public partial class GameState : State {
         private SpriteFont _font;
         private Texture2D _backgroundTexture;
         private Texture2D _batTexture;
@@ -67,21 +67,25 @@ namespace Pong.States {
 
             _sprites = new List<Sprite>() {
                 new Sprite(_backgroundTexture),
-                new Player(_batTexture, new PlayerInput() { UpKey = Keys.W, DownKey = Keys.S, TouchArea = new Rectangle(0, 0, Resolution.ScreenWidth / 2, Resolution.ScreenHeight) }) {
+                new Player(_batTexture, new PlayerInput() { UpKey = Keys.W, DownKey = Keys.S, TouchArea = new Rectangle(0, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
                     Position = new Vector2(20, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
-                new Player(_batTexture, new PlayerInput() { UpKey = Keys.Up, DownKey = Keys.Down, TouchArea = new Rectangle(Resolution.ScreenWidth / 2, 0, Resolution.ScreenWidth / 2, Resolution.ScreenHeight) }) {
+                new Player(_batTexture, new PlayerInput() { UpKey = Keys.Up, DownKey = Keys.Down, TouchArea = new Rectangle(Resolution.GameWidth / 2, 0, Resolution.GameWidth / 2, Resolution.GameHeight) }) {
                     Position = new Vector2(Resolution.GameWidth - 20 - _batTexture.Width, Resolution.GameHeight / 2 - _batTexture.Height / 2)
                 },
                 new Ball(_ballTexture)
             };
 
             Score = new Score(_font);
+
+            PlatformSpecificInitialize();
         }
 
         public override void Update(GameTime gameTime) {
             if ((!Inputs.CurrentKeys.IsKeyDown(Keys.Escape) && Inputs.PrevKeys.IsKeyDown(Keys.Escape)) || GamePad.GetState(0).IsButtonDown(Buttons.Back))
                 _game.ChangeState(new MainMenuState(_game, _graphicsDevice, _content));
+
+            PlatformSpecificUpdate(gameTime);
 
             foreach (var sprite in _sprites)
                 sprite.Update(gameTime, _sprites);
@@ -96,6 +100,8 @@ namespace Pong.States {
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
             Score.Draw(spriteBatch);
+
+            PlatformSpecificDraw(gameTime, spriteBatch);
 
             spriteBatch.End();
         }

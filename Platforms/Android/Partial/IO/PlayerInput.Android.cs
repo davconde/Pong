@@ -19,8 +19,8 @@ namespace Pong.IO {
                 if (Inputs.CurrentTouchs.Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
-                            if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))
-                                if ((int)touch.Position.Y < (int)Parent.Center.Y - Parent.Speed)
+                            if (TouchArea.Contains(Inputs.TouchPosition(touch)))
+                                if ((int)Inputs.TouchPosition(touch).Y < (int)Parent.Center.Y - Parent.Speed)
                                     return true;
                 return false;
             }
@@ -31,8 +31,8 @@ namespace Pong.IO {
                 if (Inputs.CurrentTouchs.Count > 0)
                     foreach (TouchLocation touch in TouchPanel.GetState())
                         if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
-                            if (new Rectangle((int)touch.Position.X, (int)touch.Position.Y, 1, 1).Intersects(TouchArea))
-                                if ((int)touch.Position.Y > (int)Parent.Center.Y + Parent.Speed)
+                            if (TouchArea.Contains(Inputs.TouchPosition(touch)))
+                                if ((int)Inputs.TouchPosition(touch).Y > (int)Parent.Center.Y + Parent.Speed)
                                     return true;
                 return false;
             }

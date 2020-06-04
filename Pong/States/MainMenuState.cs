@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pong.States {
-    public class MainMenuState : State {
+    public partial class MainMenuState : State {
         private SpriteFont _font;
         private Texture2D _titleTexture;
         private Texture2D _buttonTexture;
@@ -21,6 +21,7 @@ namespace Pong.States {
 
         private State _demoGameState;
         private Effect _titleEffect;
+        private int? _selectedComponent;
 
         public MainMenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) :
             base(game, graphicsDevice, content) {
@@ -58,6 +59,7 @@ namespace Pong.States {
             };
 
             _demoGameState = new GameState(_game, _graphicsDevice, _content) { NumberOfPlayers = 0, DemoMode = true };
+            PlatformSpecificInitialize();
         }
 
         private void OnePlayerButton_Click(object sender, EventArgs e) {
@@ -75,6 +77,8 @@ namespace Pong.States {
         public override void Update(GameTime gameTime) {
             if ((!Inputs.CurrentKeys.IsKeyDown(Keys.Escape) && Inputs.PrevKeys.IsKeyDown(Keys.Escape)) || GamePad.GetState(0).IsButtonDown(Buttons.Back))
                 _game.Exit();
+
+            PlatformSpecificUpdate(gameTime);
 
             foreach (var component in _components)
                 component.Update(gameTime);
@@ -96,6 +100,8 @@ namespace Pong.States {
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
+
+            PlatformSpecificDraw(gameTime, spriteBatch);
 
             spriteBatch.End();
         }
