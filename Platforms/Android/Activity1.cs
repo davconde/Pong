@@ -8,13 +8,15 @@ namespace Android {
     [Activity(Label = "Pong"
         , MainLauncher = true
         , Icon = "@drawable/icon"
-        , Theme = "@style/Theme.Splash"
+        //, Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
         , ScreenOrientation = ScreenOrientation.SensorLandscape
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
-    public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity {
-        protected override void OnCreate(Bundle bundle) {
+    public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
+    {
+        protected override void OnCreate(Bundle bundle)
+        {
             base.OnCreate(bundle);
             var g = new Game1();
             SetContentView((View)g.Services.GetService(typeof(View)));
@@ -24,7 +26,7 @@ namespace Android {
                                   | SystemUiFlags.Fullscreen
                                   | SystemUiFlags.ImmersiveSticky
                                   | SystemUiFlags.Immersive;
-            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
+            Window.DecorView.SystemUiFlags = flags;
             Immersive = true;
         }
     }

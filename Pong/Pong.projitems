@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>fccde164-5052-46e4-9fb0-c917913c56f5</SharedGUID>
+    <SharedGUID>6efba8a9-a407-4029-bdd0-651d22a87386</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Pong</Import_RootNamespace>
@@ -14,8 +14,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AudioManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IO\PlayerInput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Inputs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\PlayerInput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resolution.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Score.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Ball.cs" />
@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)WebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\Effects\DemoEffect.fx" />
     <None Include="$(MSBuildThisFileDirectory)Content\Effects\TitleEffect.fx" />

@@ -8,9 +8,13 @@ namespace Pong {
         public static void LoadWebsite(string url) {
 #if WINDOWS
             try {
-                System.Diagnostics.ProcessStartInfo webPage = new System.Diagnostics.ProcessStartInfo(url);
+                System.Diagnostics.ProcessStartInfo webPage = new System.Diagnostics.ProcessStartInfo(url)
+                {
+                    UseShellExecute = true
+                };
                 System.Diagnostics.Process.Start(webPage);
-            } catch { }
+            }
+            catch { }
 #elif ANDROID
             var uri = Android.Net.Uri.Parse(url);
             var intent = new Android.Content.Intent(Android.Content.Intent.ActionView, uri);
